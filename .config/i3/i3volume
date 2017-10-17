@@ -1,0 +1,4 @@
+#!/bin/bash
+SINK=$(pactl list short | grep RUNNING\|IDLE | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,')
+echo "Active sink is $SINK"
+echo "Volume change is $1"

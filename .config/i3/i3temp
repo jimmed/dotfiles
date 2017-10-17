@@ -1,0 +1,73 @@
+#!/usr/bin/env node
+
+const { spawn } = require('child_process')
+
+const config = [
+  {
+    label: 'Wifi',
+    type: 'temp',
+    id: 'iwlwifi-virtual-0',
+    show: 'crit',
+    crit: 60
+  },
+  { label: 'Fan', type: 'fan', id: 'thinkpad-isa-0000', show: 'always' },
+  { label: 'PCH', type: 'temp', id: 'acpitz-virtual-0', show: 'crit' },
+  { label: 'CPU', type: 'temp', id: 'coretemp-isa-0000', show: 'always' }
+]
+
+async function getSensorData() {
+  return new Promise((resolve, reject) => {
+    let data = ''
+    const proc = spawn('sensors', ['-uA'])
+    proc.stdout.on('data', out => (data += out || ''))
+    proc.stderr.on('data', err => (data += err || ''))
+    proc.on('close', code => (code ? reject(data) : resolve(data)))
+  })
+}
+
+function parseSensorData(rawData) {
+  const rawItems = rawData.split(/\n{2}/g).filter(x => x)
+  const parsedItems = rawItems.map(parseItem)
+  return parsedItems
+}
+
+function parseItem(rawItem) {
+  const [id, ...defs] = rawItem.split(/\n/g)
+  const { sensors } = defs.reduce(({ sensors = {}, lastLine }, line) => {
+    let prevLine = lastLine
+    if (line[0] !== ' ') {
+      const lineName = line.slice(0, -1)
+      sensors[lineName] = {}
+      prevLine = lineName
+    } else {
+      const [key, value] = line.replace(/^\s{2}/, '').split(/:\s+/g)
+      const name = key.split(/_/g).slice(1).join('_')
+      sensors[prevLine][camelCase(name)] = parseFloat(value)
+    }
+    return { sensors, lastLine: prevLine }
+  }, {})
+  return { id, sensors }
+}
+
+function postProcess(adapters) {
+  return adapters.map(({ id, sensors }) => {
+    const meta = config.find(item => id === item.id) || {}
+    const state = postProcessItem({ sensors, meta })
+    return Object.assign({ id, sensors }, meta, {})
+  })
+}
+
+function postProcessItem({ sensors, meta }) {}
+
+function camelCase(str) {
+  return str.replace(/^_/, '').replace(/_(.)/g, (x, c) => c.toUpperCase())
+}
+
+async function run() {
+  const rawData = await getSensorData()
+  const adapters = parseSensorData(rawData)
+  const processed = postProcess(adapters)
+  console.log(require('util').inspect(processed, { depth: 5, colors: true }))
+}
+
+run()

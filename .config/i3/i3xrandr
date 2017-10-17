@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+EXT="DP2-1"
+INT="eDP1"
+
+monitor_mode=$0
+
+if [ $monitor_mode = "EXT" ]; then
+        xrandr --output $EXT --auto;
+elif [ $monitor_mode = "INT" ]; then
+        xrandr --output $INT --auto;
+elif [ $monitor_mode = "CLONE" ]; then
+        xrandr --output $INT --auto --output $EXT --auto --same-as $INT;
+else
+	xrandr --output eDP1 --auto;
+	xrandr --output DP2-1 --off;
+	xrandr --output DP2-1 --auto --left-of eDP1;
+fi

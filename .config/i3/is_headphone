@@ -1,0 +1,10 @@
+#!/bin/bash
+
+export JACK=$(amixer -c 0 cget numid=14,iface=CARD | awk -F"=" 'NR == 3 {print $2;}')
+
+if [[ "$JACK" == "on" ]]
+then
+	echo ''
+else
+	echo ''
+fi

@@ -56,3 +56,5 @@ function fish_user_key_bindings
     bind \& 'handle_input_bash_conditional \&'
     bind \| 'handle_input_bash_conditional \|'
 end
+
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
