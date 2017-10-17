@@ -1,7 +1,6 @@
 setup-git-shorthands
 
 set -x GOPATH /usr/lib/local/golang/
-set PATH $PATH /usr/lib/local/golang/bin
 
 alias git=hub
 
