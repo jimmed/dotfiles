@@ -54,3 +54,8 @@ command -v rambox >/dev/null 2>&1 && { echo "Rambox already installed" } || {
   rm rambox.deb
   popd
 }
+
+command -v atom >/dev/null 2>&1 && { echo "Atom already installed" } || {
+  echo "Installing Atom"
+  sudo snap install --classic atom
+}
