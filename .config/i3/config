@@ -4,6 +4,8 @@
 #  - Fix suspend in i3exit
 #  - Send signals to update i3bar on changing volume etc.
 
+# DPI settings
+exec xrandr --dpi 120
 
 # Windows key!
 set $mod Mod4
