@@ -59,3 +59,8 @@ command -v atom >/dev/null 2>&1 && { echo "Atom already installed" } || {
   echo "Installing Atom"
   sudo snap install --classic atom
 }
+
+echo "Fixing Nautilus desktop setting"
+gsettings set org.gnome.desktop.background show-desktop-icons false
+
+echo "DONE!"
