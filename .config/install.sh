@@ -9,25 +9,32 @@ sudo apt update
 sudo apt upgrade -y
 
 # Installing installer deps
-sudo apt install curl
-
-# Add apt sources
-echo "Adding apt sources..."
+command -v curl >/dev/null 2>&1 && {
+  echo "curl already installed"
+} || {
+  sudo apt install curl
+}
 
 # Fish shell
-command -v fish >/dev/null 2>&1 || {
+command -v fish >/dev/null 2>&1 && {
+  echo "Fish already installed"
+} || {
   sudo apt-add-repository ppa:fish-shell/release-2
   sudo apt install -y fish
   chsh -s /usr/bin/fish
 }
 
 # Node.js
-command -v node >/dev/null 2>&1 || {
+command -v node >/dev/null 2>&1 && {
+  echo "Node.js already installed"
+} || {
   curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 }
 
 # Yarn
-command -v yarn >/dev/null 2>&1 || {
+command -v yarn >/dev/null 2>&1 && {
+  echo "Yarn already installed"
+} || {
   curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
   echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 }
@@ -36,7 +43,9 @@ echo "INSTALLING!"
 # Install it all!
 sudo apt install -y i3 i3blocks j4-dmenu-desktop nodejs yarn golang xclip
 
-command -v google-chrome >/dev/null 2>&1 && { echo "Chrome already installed" } || {
+command -v google-chrome >/dev/null 2>&1 && {
+  echo "Chrome already installed"
+} || {
   echo "Installing Chrome"
   sudo apt install -y libappindicator1
   pushd ~/Downloads
@@ -46,7 +55,9 @@ command -v google-chrome >/dev/null 2>&1 && { echo "Chrome already installed" } 
   popd
 }
 
-command -v rambox >/dev/null 2>&1 && { echo "Rambox already installed" } || {
+command -v rambox >/dev/null 2>&1 && {
+  echo "Rambox already installed"
+} || {
   echo "Installing Rambox"
   pushd ~/Downloads
   wget -O rambox.deb https://github.com/saenzramiro/rambox/releases/download/0.5.13/Rambox_0.5.13-x64.deb
@@ -55,12 +66,38 @@ command -v rambox >/dev/null 2>&1 && { echo "Rambox already installed" } || {
   popd
 }
 
-command -v atom >/dev/null 2>&1 && { echo "Atom already installed" } || {
+command -v atom >/dev/null 2>&1 && {
+  echo "Atom already installed"
+} || {
   echo "Installing Atom"
   sudo snap install --classic atom
 }
 
+command -v psql >/dev/null 2>&1 && {
+  echo "PostgreSQL already installed"
+} || {
+  echo "Installing PostgreSQL"
+  sudo apt install -y postgresql-9.5
+  sudo -u postgres createuser --superuser $USER
+  sudo -u postgres createdb $USER
+}
+
+command -v discord >/dev/null 2>&1 && {
+  echo "Discord already installed"
+} || {
+  echo "Installing Discord"
+  pushd ~/Downloads
+  wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+  sudo apt install -y libc++1
+  sudo dpkg -i discord.deb
+  rm discord.deb
+  popd
+}
+
 echo "Fixing Nautilus desktop setting"
 gsettings set org.gnome.desktop.background show-desktop-icons false
+
+echo "Cleaning up"
+sudo apt autoremove -y
 
 echo "DONE!"
