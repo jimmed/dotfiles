@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.BIQrQL/fucking.fish @ line 1
+# Defined in /home/jim/.config/fish/functions/fucking.fish @ line 2
 function fucking
 	sudo $argv
 end

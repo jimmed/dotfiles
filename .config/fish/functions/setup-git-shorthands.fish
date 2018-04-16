@@ -1,5 +1,6 @@
+# Defined in /home/jim/.config/fish/functions/setup-git-shorthands.fish @ line 1
 function setup-git-shorthands
-  set commands {pull,push,commit,checkout,branch,rebase,whatchanged,merge,fetch,status}
+	set commands {pull,push,commit,checkout,branch,rebase,whatchanged,merge,fetch,status}
   for cmd in $commands
     set -l shorthand
     switch $cmd

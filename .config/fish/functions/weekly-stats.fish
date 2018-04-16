@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.BM2SXs/weekly-stats.fish @ line 2
+# Defined in /home/jim/.config/fish/functions/weekly-stats.fish @ line 2
 function weekly-stats --argument date weeks
 	pushd ~/dev/mudano/query-hell
 	echo "Generating queries for $date ($weeks weeks)"

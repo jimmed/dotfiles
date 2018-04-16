@@ -1,4 +1,4 @@
-# Defined in /tmp/fish.mbAAsV/gpsu.fish @ line 1
+# Defined in /home/jim/.config/fish/functions/gpsu.fish @ line 2
 function gpsu
 	gps -u origin (current-branch-name)
 end

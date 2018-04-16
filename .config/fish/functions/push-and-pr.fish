@@ -1,3 +1,4 @@
+# Defined in /home/jim/.config/fish/functions/push-and-pr.fish @ line 1
 function push-and-pr --description 'Pushes to origin on the current branch and raises a pull request' --argument pr_title
 	set current_branch (git rev-parse --abbrev-ref HEAD ^ /dev/null)
     if not [ $pr_title ]
