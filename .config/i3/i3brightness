@@ -1,28 +1,2 @@
 #!/bin/bash
-DEVICE=/sys/class/backlight/intel_backlight/
-
-MIN=1
-MAX=$(cat "$DEVICE/max_brightness")
-ORIG=$(cat "$DEVICE/brightness")
-DURATION=500
-
-TARGET=$(($ORIG+ $1))
-
-if [ "$TARGET" -lt $MIN ]; then
-	TARGET=$MIN
-elif [ "$TARGET" -gt $MAX ]; then
-	TARGET=$MAX
-fi
-
-
-INTERVAL=2
-if [ "$TARGET" -lt "$ORIG" ]; then
-	INTERVAL=-2
-fi
-
-DELAY=$(echo "scale=5;($TARGET/$ORIG)*-1*$INTERVAL/$DURATION" | bc)
-echo $DELAY
-for i in $(seq $ORIG $INTERVAL $TARGET); do
-	echo $i > $DEVICE/brightness
-	sleep $DELAY
-done
+curl -X PUT -d "delta=$1" http://localhost:28734/

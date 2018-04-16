@@ -94,6 +94,17 @@ command -v discord >/dev/null 2>&1 && {
   popd
 }
 
+command -v playerctl >/dev/null 2>&1 && {
+  echo "Playerctl already installed"
+} || {
+  echo "Installing playerctl"
+  pushd ~/Downloads
+  wget -O playerctl.deb "https://github.com/acrisci/playerctl/releases/download/v0.5.0/playerctl-0.5.0_amd64.deb"
+  sudo dpkg -i playerctl.deb
+  rm playerctl.deb
+  popd
+}
+
 echo "Fixing Nautilus desktop setting"
 gsettings set org.gnome.desktop.background show-desktop-icons false
 

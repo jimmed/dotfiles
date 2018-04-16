@@ -5,7 +5,8 @@
 #  - Send signals to update i3bar on changing volume etc.
 
 # DPI settings
-exec xrandr --dpi 120
+exec xrandr --output eDP1 --dpi 120
+exec xrandr --output DP1-2 --dpi 96
 
 # Windows key!
 set $mod Mod4
@@ -17,7 +18,7 @@ font pango:Iosevka 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec hyper
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -135,13 +136,16 @@ bindsym $mod+r mode "resize"
 
 
 ## Application launchers
-bindsym $mod+b exec google-chrome --new-window --touch-devices=10 --enable-pinch --high-dpi-support=1 --force-device-scale-factor=1
-bindsym $mod+Shift+b exec google-chrome --new-window --incognito --touch-devices=10 --enable-pinch --high-dpi-support=1 --force-device-scale-factor=1
+bindsym $mod+b exec google-chrome --new-window --touch-devices=10 --enable-pinch --force-device-scale-factor=1
+bindsym $mod+Shift+b exec google-chrome --new-window --incognito --touch-devices=10 --enable-pinch --force-device-scale-factor=1
 
 bindsym $mod+m exec /opt/multimc/run.sh
+bindsym $mod+shift+d exec /usr/bin/discord
 bindsym $mod+n exec /opt/Rambox/rambox
 bindsym $mod+a exec atom
 bindsym $mod+p exec google-play-music-desktop-player
+bindsym $mod+Shift+F1 exec pavucontrol
+bindsym $mod+Shift+XF86AudioMute exec pavucontrol
 
 ## Shutdown/lock mode
 set $mode_system System (l) lock, (Shift + l) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -181,15 +185,18 @@ bindsym XF86AudioMicMute $cmd_mic_mute
 bindsym $mod+F4 $cmd_mic_mute
 
 # Brightness keys (F5/F6)
-set $cmd_set_brt xbacklight
-bindsym XF86MonBrightnessUp exec $cmd_set_brt -inc 5
-bindsym XF86MonBrightnessDown exec $cmd_set_brt -dec 5
-bindsym $mod+F6 exec $cmd_set_brt -inc 5
-bindsym $mod+F5 exec $cmd_set_brt -dec 5
-bindsym Shift+XF86MonBrightnessUp exec $cmd_set_brt -inc 1
-bindsym Shift+XF86MonBrightnessDown exec $cmd_set_brt -dec 1
-bindsym Shift+$mod+F6 exec $cmd_set_brt -inc 1
-bindsym Shift+$mod+F5 exec $cmd_set_brt -dec 1
+bindsym XF86MonBrightnessUp exec /home/jim/.config/i3/i3brightness 10
+bindsym XF86MonBrightnessDown exec /home/jim/.config/i3/i3brightness -10
+bindsym Shift+XF86MonBrightnessUp exec /home/jim/.config/i3/i3brightness 20
+bindsym Shift+XF86MonBrightnessDown exec /home/jim/.config/i3/i3brightness -20
+bindsym Ctrl+XF86MonBrightnessUp exec /home/jim/.config/i3/i3brightness 5
+bindsym Ctrl+XF86MonBrightnessDown exec /home/jim/.config/i3/i3brightness -5
+bindsym $mod+F6 exec /home/jim/.config/i3/i3brightness 10
+bindsym $mod+F5 exec /home/jim/.config/i3/i3brightness -10
+bindsym $mod+Shift+F6 exec /home/jim/.config/i3/i3brightness 20
+bindsym $mod+Shift+F5 exec /home/jim/.config/i3/i3brightness -20
+bindsym $mod+Ctrl+F6 exec /home/jim/.config/i3/i3brightness 5
+bindsym $mod+Ctrl+F5 exec /home/jim/.config/i3/i3brightness -5
 
 # Screenshot (F7)
 bindsym Print exec gnome-screenshot -i
@@ -236,10 +243,15 @@ bindsym $mod+Shift+less move workspace to output right
 
 # Network Manager Applet
 exec --no-startup-id nm-applet
-exec --no-startup-id blueman-applet
 
-# Redshift (f.lux)
-exec --no-startup-id redshift
+# Sound switcher indicator
+exec --no-startup-id indicator-sound-switcher
+
+# Brightness keys server
+exec --no-startup-id ~/dev/personal/lumos/lib/server.sh
+
+# Redshift (previously using f.lux)
+exec --no-startup-id redshift-gtk
 
 # Map touchscreen to screen
 exec --no-startup-id ~/.config/i3/touchscreen.sh
@@ -247,3 +259,5 @@ exec --no-startup-id ~/.config/i3/touchscreen.sh
 # Configure trackpad
 exec --no-startup-id synclient HorizTwoFingerScroll=1 PalmDetect=1
 
+# Straight into compton mo'fucker
+exec --no-startup-id compton -b

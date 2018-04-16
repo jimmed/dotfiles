@@ -1,6 +1,10 @@
 setup-git-shorthands
 
 set -x GOPATH /usr/lib/local/golang/
+set -x EDITOR vim
+set -x default_user jim
+
+# source ~/.cargo/env
 
 alias git=hub
 
