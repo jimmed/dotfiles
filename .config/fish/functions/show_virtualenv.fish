@@ -1,7 +1,8 @@
-# Defined in /home/jim/.config/fish/functions/show_virtualenv.fish @ line 2
-function show_virtualenv --description 'Show active python virtual environments'
-	if set -q VIRTUAL_ENV
-    set -l venvname (basename "$VIRTUAL_ENV")
-    prompt_segment normal white " ($venvname) "
-  end
+# Defined in /tmp/fish.lHk3n1/show_virtualenv.fish @ line 2
+function show_virtualenv --description 'Show active nvm environment'
+	set -l nvm_current (nvm current)
+    if [ nvm_current ]
+      prompt_segment cyan white " $nvm_current "
+    end
+    set_color normal
 end
