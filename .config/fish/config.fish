@@ -2,6 +2,7 @@ setup-git-shorthands
 
 set -x GOPATH /usr/lib/local/golang/
 set -x EDITOR vim
+set -x PATH (yarn global bin) $PATH
 set -x default_user jim
 
 # source ~/.cargo/env
