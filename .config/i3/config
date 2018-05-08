@@ -185,18 +185,18 @@ bindsym XF86AudioMicMute $cmd_mic_mute
 bindsym $mod+F4 $cmd_mic_mute
 
 # Brightness keys (F5/F6)
-bindsym XF86MonBrightnessUp exec /home/jim/.config/i3/i3brightness 10
-bindsym XF86MonBrightnessDown exec /home/jim/.config/i3/i3brightness -10
-bindsym Shift+XF86MonBrightnessUp exec /home/jim/.config/i3/i3brightness 20
-bindsym Shift+XF86MonBrightnessDown exec /home/jim/.config/i3/i3brightness -20
-bindsym Ctrl+XF86MonBrightnessUp exec /home/jim/.config/i3/i3brightness 5
-bindsym Ctrl+XF86MonBrightnessDown exec /home/jim/.config/i3/i3brightness -5
-bindsym $mod+F6 exec /home/jim/.config/i3/i3brightness 10
-bindsym $mod+F5 exec /home/jim/.config/i3/i3brightness -10
-bindsym $mod+Shift+F6 exec /home/jim/.config/i3/i3brightness 20
-bindsym $mod+Shift+F5 exec /home/jim/.config/i3/i3brightness -20
-bindsym $mod+Ctrl+F6 exec /home/jim/.config/i3/i3brightness 5
-bindsym $mod+Ctrl+F5 exec /home/jim/.config/i3/i3brightness -5
+bindsym XF86MonBrightnessUp exec xbacklight +10
+bindsym XF86MonBrightnessDown exec xbacklight -10
+bindsym Shift+XF86MonBrightnessUp exec xbacklight +20
+bindsym Shift+XF86MonBrightnessDown exec xbacklight -20
+bindsym Ctrl+XF86MonBrightnessUp exec xbacklight +5
+bindsym Ctrl+XF86MonBrightnessDown exec xbacklight -5
+bindsym $mod+F6 exec xbacklight +10
+bindsym $mod+F5 exec xbacklight -10
+bindsym $mod+Shift+F6 exec xbacklight +20
+bindsym $mod+Shift+F5 exec xbacklight -20
+bindsym $mod+Ctrl+F6 exec xbacklight +5
+bindsym $mod+Ctrl+F5 exec xbacklight -5
 
 # Screenshot (F7)
 bindsym Print exec gnome-screenshot -i
@@ -246,9 +246,6 @@ exec --no-startup-id nm-applet
 
 # Sound switcher indicator
 exec --no-startup-id indicator-sound-switcher
-
-# Brightness keys server
-exec --no-startup-id ~/dev/personal/lumos/lib/server.sh
 
 # Redshift (previously using f.lux)
 exec --no-startup-id redshift-gtk

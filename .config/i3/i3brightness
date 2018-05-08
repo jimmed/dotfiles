@@ -1,2 +1,2 @@
 #!/bin/bash
-curl -X PUT -d "delta=$1" http://localhost:28734/
+xbacklight $delta
