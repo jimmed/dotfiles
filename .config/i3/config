@@ -18,7 +18,7 @@ font pango:Iosevka 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec hyper
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
