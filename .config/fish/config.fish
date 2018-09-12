@@ -3,7 +3,10 @@ setup-git-shorthands
 set -x GOPATH /usr/lib/local/golang/
 set -x EDITOR vim
 set -x PATH (yarn global bin) $PATH
+set -x PATH $HOME/.local/bin $PATH
 set -x default_user jim
+
+cat ~/.cache/wal/sequences
 
 # source ~/.cargo/env
 
@@ -62,3 +65,5 @@ function fish_user_key_bindings
 end
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+set -x NO_AT_BRIDGE 1

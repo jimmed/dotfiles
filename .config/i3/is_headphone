@@ -4,7 +4,7 @@ export JACK=$(amixer -c 0 cget numid=14,iface=CARD | awk -F"=" 'NR == 3 {print $
 
 if [[ "$JACK" == "on" ]]
 then
-	echo ''
+	echo ' '
 else
-	echo ''
+	echo ' '
 fi

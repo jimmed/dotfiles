@@ -4,8 +4,14 @@
 #  - Fix suspend in i3exit
 #  - Send signals to update i3bar on changing volume etc.
 
+# i3-gaps requires window titles disabled:
+for_window [class="^.*"] border pixel 0
+gaps inner 15
+gaps outer 0
+
 # DPI settings
 exec xrandr --output eDP1 --dpi 120
+exec xrandr --output DP1-1 --dpi 96
 exec xrandr --output DP1-2 --dpi 96
 
 # Windows key!
@@ -18,15 +24,16 @@ font pango:Iosevka 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
-bindsym $mod+Shift+Return exec hyper
+bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Shift+Return exec kitty
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec --no-startup-id j4-dmenu-desktop
+#bindsym $mod+d exec --no-startup-id j4-dmenu-desktop
+bindsym $mod+d exec --no-startup-id rofi -show drun
 
 # change focus
 bindsym $mod+j focus left
@@ -106,6 +113,7 @@ bindsym $mod+Shift+0 move container to workspace 10
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
+bindsym $mod+Shift+Ctrl+r exec "pkill compton; compton -b"
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
@@ -143,7 +151,8 @@ bindsym $mod+Shift+b exec google-chrome --new-window --incognito --touch-devices
 bindsym $mod+m exec /opt/multimc/run.sh
 bindsym $mod+shift+d exec /usr/bin/discord
 bindsym $mod+n exec /opt/Rambox/rambox
-bindsym $mod+a exec atom
+bindsym $mod+a exec code
+bindsym $mod+shift+a exec atom
 bindsym $mod+p exec google-play-music-desktop-player
 bindsym $mod+Shift+F1 exec pavucontrol
 bindsym $mod+Shift+XF86AudioMute exec pavucontrol
@@ -218,12 +227,14 @@ bindsym $mod+F7 mode "$mode_displays"
 # finds out, if available)
 bar {
 	status_command i3blocks
-        tray_output primary
+  i3bar_command i3bar
+  tray_output primary
 #	mode hide 
 #	hidden_state hide
-#        modifier $mod
-	position top
-	font pango:Iosevka Term, FontAwesome 12
+# modifier $mod
+	position bottom
+	font pango:Noto Sans CJK SC, FontAwesome 11
+  tray_padding 4
 }
 
 # Set wallpaper
@@ -258,4 +269,5 @@ exec --no-startup-id ~/.config/i3/touchscreen.sh
 exec --no-startup-id synclient HorizTwoFingerScroll=1 PalmDetect=1
 
 # Straight into compton mo'fucker
-exec --no-startup-id compton -b
+exec --no-startup-id dbus-launch compton -b
+exec --no-startup-id wal -R
