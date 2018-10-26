@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-EXT="DP2-1"
+EXT="HDMI1"
 INT="eDP1"
 
 monitor_mode=$0
@@ -10,8 +10,9 @@ elif [ $monitor_mode = "INT" ]; then
         xrandr --output $INT --auto;
 elif [ $monitor_mode = "CLONE" ]; then
         xrandr --output $INT --auto --output $EXT --auto --same-as $INT;
+elif [ $monitor_mode = "PROJECTOR" ]; then
+        xrandr --output $INT --mode 1920x1080 --output $EXT --mode 1600x1050 --same-as $INT;
 else
-	xrandr --output eDP1 --auto;
-	xrandr --output DP2-1 --off;
-	xrandr --output DP2-1 --auto --left-of eDP1;
+	xrandr --output $INT --auto;
+	xrandr --output $EXT --off;
 fi

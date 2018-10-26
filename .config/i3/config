@@ -212,12 +212,13 @@ bindsym $mod+Ctrl+F5 exec xbacklight -5
 bindsym Print exec gnome-screenshot -i
 
 # Display mode (Shift + F7)
-set $mode_displays Displays (a)utomatic, (c)lone, (e)xternal only, (i)nternal only
+set $mode_displays Displays (a)utomatic, (c)lone, (e)xternal only, (i)nternal only, (p)rojector
 mode "$mode_displays" {
 	bindsym a exec --no-startup-id /home/jim/.config/i3/i3xrandr ALL && nitrogen --restore, mode "default"
 	bindsym c exec --no-startup-id /home/jim/.config/i3/i3xrandr CLONE && nitrogen --restore, mode "default"
 	bindsym i exec --no-startup-id /home/jim/.config/i3/i3xrandr INTERNAL && nitrogen --restore, mode "default"
 	bindsym e exec --no-startup-id /home/jim/.config/i3/i3xrandr EXTERNAL && nitrogen --restore, mode "default"
+	bindsym p exec --no-startup-id /home/jim/.config/i3/i3xrandr PROJECTOR && nitrogen --restore, mode "default"
 	bindsym Escape mode "default"
 }
 bindsym $mod+XF86Display mode "$mode_displays"
