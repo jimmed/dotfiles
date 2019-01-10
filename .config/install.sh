@@ -3,6 +3,10 @@
 # TODO
 # - Split out into modules
 
+NODE_VERSION="10"
+FRANZ_VERSION="5.0.0-beta.19"
+PLAYERCTL_VERSION="0.5.0"
+
 # Run updates
 echo "System updates..."
 sudo apt update
@@ -28,7 +32,7 @@ command -v fish >/dev/null 2>&1 && {
 command -v node >/dev/null 2>&1 && {
   echo "Node.js already installed"
 } || {
-  curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+  curl -sL https://deb.nodesource.com/setup_$NODE_VERSION.x | sudo -E bash -
 }
 
 # Yarn
@@ -60,7 +64,7 @@ command -v franz >/dev/null 2>&1 && {
 } || {
   echo "Installing Franz"
   pushd ~/Downloads
-  wget -O franz.deb https://github.com/meetfranz/franz/releases/download/v5.0.0-beta.19/franz_5.0.0-beta.19_amd64.deb
+  wget -O franz.deb https://github.com/meetfranz/franz/releases/download/v$FRANZ_VERSION/franz_$FRANZ_VERSION_amd64.deb
   sudo dpkg -i franz.deb
   rm franz.deb
   popd
@@ -94,7 +98,7 @@ command -v playerctl >/dev/null 2>&1 && {
 } || {
   echo "Installing playerctl"
   pushd ~/Downloads
-  wget -O playerctl.deb "https://github.com/acrisci/playerctl/releases/download/v0.5.0/playerctl-0.5.0_amd64.deb"
+  wget -O playerctl.deb "https://github.com/acrisci/playerctl/releases/download/v$PLAYERCTL_VERSION/playerctl-$PLAYERCTL_VERSION_amd64.deb"
   sudo dpkg -i playerctl.deb
   rm playerctl.deb
   popd
