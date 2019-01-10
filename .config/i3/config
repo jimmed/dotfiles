@@ -145,12 +145,12 @@ bindsym $mod+r mode "resize"
 
 
 ## Application launchers
-bindsym $mod+b exec google-chrome --new-window --touch-devices=10 --enable-pinch --force-device-scale-factor=1
-bindsym $mod+Shift+b exec google-chrome --new-window --incognito --touch-devices=10 --enable-pinch --force-device-scale-factor=1
+bindsym $mod+b exec google-chrome --new-window 
+bindsym $mod+Shift+b exec google-chrome --new-window --incognito
 
 bindsym $mod+m exec /opt/multimc/run.sh
 bindsym $mod+shift+d exec /usr/bin/discord
-bindsym $mod+n exec /opt/Rambox/rambox
+bindsym $mod+n exec franz
 bindsym $mod+a exec code
 bindsym $mod+shift+a exec atom
 bindsym $mod+p exec google-play-music-desktop-player
