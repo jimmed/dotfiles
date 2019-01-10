@@ -12,7 +12,7 @@ sudo apt upgrade -y
 command -v curl >/dev/null 2>&1 && {
   echo "curl already installed"
 } || {
-  sudo apt install curl
+  sudo apt install curl -y
 }
 
 # Fish shell
@@ -28,7 +28,7 @@ command -v fish >/dev/null 2>&1 && {
 command -v node >/dev/null 2>&1 && {
   echo "Node.js already installed"
 } || {
-  curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+  curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 }
 
 # Yarn
@@ -55,31 +55,26 @@ command -v google-chrome >/dev/null 2>&1 && {
   popd
 }
 
-command -v rambox >/dev/null 2>&1 && {
-  echo "Rambox already installed"
+command -v franz >/dev/null 2>&1 && {
+  echo "Franz already installed"
 } || {
-  echo "Installing Rambox"
+  echo "Installing Franz"
   pushd ~/Downloads
-  wget -O rambox.deb https://github.com/saenzramiro/rambox/releases/download/0.5.13/Rambox_0.5.13-x64.deb
-  sudo dpkg -i rambox.deb
-  rm rambox.deb
+  wget -O franz.deb https://github.com/meetfranz/franz/releases/download/v5.0.0-beta.19/franz_5.0.0-beta.19_amd64.deb
+  sudo dpkg -i franz.deb
+  rm franz.deb
   popd
 }
 
-command -v atom >/dev/null 2>&1 && {
-  echo "Atom already installed"
+command -v code >/dev/null 2>&1 && {
+  echo "Code already installed"
 } || {
-  echo "Installing Atom"
-  sudo snap install --classic atom
-}
-
-command -v psql >/dev/null 2>&1 && {
-  echo "PostgreSQL already installed"
-} || {
-  echo "Installing PostgreSQL"
-  sudo apt install -y postgresql-9.5
-  sudo -u postgres createuser --superuser $USER
-  sudo -u postgres createdb $USER
+  echo "Installing Code"
+  curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+  sudo install -o root -g root -m 644 microsoft.gpg /etc/apt/trusted.gpg.d/
+  sudo sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+  sudo apt update
+  sudo apt install code -y
 }
 
 command -v discord >/dev/null 2>&1 && {

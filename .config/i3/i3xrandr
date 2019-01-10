@@ -1,18 +1,21 @@
 #!/usr/bin/env bash
-EXT="HDMI1"
+EXT="DP2"
 INT="eDP1"
 
 monitor_mode=$0
 
 if [ $monitor_mode = "EXT" ]; then
-        xrandr --output $EXT --auto;
+        xrandr --output $EXT --auto --above $INT --output $INT --auto;
 elif [ $monitor_mode = "INT" ]; then
         xrandr --output $INT --auto;
 elif [ $monitor_mode = "CLONE" ]; then
         xrandr --output $INT --auto --output $EXT --auto --same-as $INT;
-elif [ $monitor_mode = "PROJECTOR" ]; then
-        xrandr --output $INT --mode 1920x1080 --output $EXT --mode 1600x1050 --same-as $INT;
 else
 	xrandr --output $INT --auto;
 	xrandr --output $EXT --off;
 fi
+
+fish -c "wal -R"
+xinput map-to-output 9 eDP1
+xinput map-to-output 10 eDP1
+xinput map-to-output 16 eDP1

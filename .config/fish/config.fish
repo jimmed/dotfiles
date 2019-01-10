@@ -67,3 +67,13 @@ end
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 set -x NO_AT_BRIDGE 1
+
+# tabtab source for electron-forge package
+# uninstall by removing these lines or running `tabtab uninstall electron-forge`
+[ -f /home/jim/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.fish ]; and . /home/jim/.config/yarn/global/node_modules/tabtab/.completions/electron-forge.fish
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /home/jim/dev/mettle/ops-tool/node_modules/tabtab/.completions/serverless.fish ]; and . /home/jim/dev/mettle/ops-tool/node_modules/tabtab/.completions/serverless.fish
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /home/jim/dev/mettle/ops-tool/node_modules/tabtab/.completions/sls.fish ]; and . /home/jim/dev/mettle/ops-tool/node_modules/tabtab/.completions/sls.fish
