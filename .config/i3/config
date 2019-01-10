@@ -235,7 +235,7 @@ bar {
 # modifier $mod
 	position bottom
 	font pango:Noto Sans CJK SC, FontAwesome 11
-  tray_padding 4
+  tray_padding 5
 }
 
 # Set wallpaper
