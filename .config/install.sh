@@ -2,6 +2,9 @@
 
 # TODO
 # - Split out into modules
+# - Automatically resolve latest versions
+# - Perform updates if current versions do not match
+# - I realise I'm making a package manager here
 
 NODE_VERSION="10"
 FRANZ_VERSION="5.0.0-beta.19"

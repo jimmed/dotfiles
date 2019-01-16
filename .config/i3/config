@@ -288,3 +288,14 @@ client.placeholder      $bg     $bg     $fg  $bg       $bg
 
 client.background       $bg
 
+# Bind workspaces to monitors
+workspace 1 output eDP1
+workspace 3 output eDP1
+workspace 5 output eDP1
+workspace 7 output eDP1
+workspace 9 output eDP1
+workspace 2 output DP1 DP2 HDMI1
+workspace 4 output DP1 DP2 HDMI1
+workspace 6 output DP1 DP2 HDMI1
+workspace 8 output DP1 DP2 HDMI1
+workspace 10 output DP1 DP2 HDMI1
