@@ -1,0 +1,23 @@
+match:
+  DP2:
+    supports: 3840x2160
+  eDP1:
+    supports: 2560x1440
+name: mettle
+outputs:
+  DP2:
+    crtc: 1
+    mode: 3840x2160
+    panning: '0x0'
+    pos: '0x0'
+    rotate: normal
+    scale: 1x1
+  eDP1:
+    crtc: 0
+    mode: 2560x1440
+    panning: '0x0'
+    pos: '0x2160'
+    rotate: normal
+    scale: 1x1
+primary: eDP1
+priority: 100

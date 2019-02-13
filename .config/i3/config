@@ -208,17 +208,15 @@ bindsym $mod+Shift+F5 exec xbacklight -20
 bindsym $mod+Ctrl+F6 exec xbacklight +5
 bindsym $mod+Ctrl+F5 exec xbacklight -5
 
-# Screenshot (F7)
+# Screenshot (Printscreen)
 bindsym Print exec gnome-screenshot -i
 
 # Display mode (Shift + F7)
-set $mode_displays Displays (a)utomatic, (c)lone, (e)xternal only, (i)nternal only, (p)rojector
+set $mode_displays Display profile (a)utomatic, (h)ome, (w)ork
 mode "$mode_displays" {
-	bindsym a exec --no-startup-id /home/jim/.config/i3/i3xrandr ALL && nitrogen --restore, mode "default"
-	bindsym c exec --no-startup-id /home/jim/.config/i3/i3xrandr CLONE && nitrogen --restore, mode "default"
-	bindsym i exec --no-startup-id /home/jim/.config/i3/i3xrandr INTERNAL && nitrogen --restore, mode "default"
-	bindsym e exec --no-startup-id /home/jim/.config/i3/i3xrandr EXTERNAL && nitrogen --restore, mode "default"
-	bindsym p exec --no-startup-id /home/jim/.config/i3/i3xrandr PROJECTOR && nitrogen --restore, mode "default"
+  bindsym a exec --no-startup-id /usr/local/bin/randrctl -d auto, mode "default"
+  bindsym h exec --no-startup-id /usr/local/bin/randrctl switch-to home, mode "default"
+  bindsym w exec --no-startup-id /usr/local/bin/randrctl switch-to mettle, mode "default"
 	bindsym Escape mode "default"
 }
 bindsym $mod+XF86Display mode "$mode_displays"
@@ -229,7 +227,7 @@ bindsym $mod+F7 mode "$mode_displays"
 bar {
 	status_command i3blocks
   i3bar_command i3bar
-  tray_output primary
+  tray_output eDP1
 #	mode hide 
 #	hidden_state hide
 # modifier $mod
@@ -273,7 +271,9 @@ exec --no-startup-id synclient HorizTwoFingerScroll=1 PalmDetect=1
 
 # Straight into compton mo'fucker
 exec --no-startup-id dbus-launch compton -b
-exec --no-startup-id wal -R
+
+# Export dbus session for laptop lid scripts
+exec --no-startup-id ~/export_x_info
 
 # Wal shenanigans
 set_from_resource $fg i3wm.color7 #f0f0f0
@@ -299,3 +299,6 @@ workspace 4 output DP1 DP2 HDMI1
 workspace 6 output DP1 DP2 HDMI1
 workspace 8 output DP1 DP2 HDMI1
 workspace 10 output DP1 DP2 HDMI1
+
+set_from_resource $bg i3wm.color0 #000000
+set_from_resource $fg i3wm.color1 #FFFFFF

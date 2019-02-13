@@ -77,3 +77,5 @@ set -x NO_AT_BRIDGE 1
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [ -f /home/jim/dev/mettle/ops-tool/node_modules/tabtab/.completions/sls.fish ]; and . /home/jim/dev/mettle/ops-tool/node_modules/tabtab/.completions/sls.fish
+
+eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)

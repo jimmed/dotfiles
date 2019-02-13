@@ -1,3 +1,5 @@
+#include "/home/jim/.cache/wal/colors.Xresources"
+
 Xft.dpi: 130
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
