@@ -1,22 +1,24 @@
 match:
   DP2:
-    supports: 3840x2160
+    edid: 6030614b33620c3146e663b080a26f2c
   eDP1:
-    supports: 2560x1440
+    edid: 303cf288e687e8430757c9dd9115078f
 name: mettle
 outputs:
   DP2:
     crtc: 1
-    mode: 3840x2160
+    mode: 2560x1440
     panning: '0x0'
     pos: '0x0'
+    rate: '59.95'
     rotate: normal
     scale: 1x1
   eDP1:
     crtc: 0
     mode: 2560x1440
     panning: '0x0'
-    pos: '0x2160'
+    pos: '0x1440'
+    rate: '60.05'
     rotate: normal
     scale: 1x1
 primary: eDP1

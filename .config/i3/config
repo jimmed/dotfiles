@@ -31,9 +31,7 @@ bindsym $mod+Shift+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-#bindsym $mod+d exec dmenu_run
-#bindsym $mod+d exec --no-startup-id j4-dmenu-desktop
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id rofi -show combi
 
 # change focus
 bindsym $mod+j focus left
@@ -236,9 +234,6 @@ bar {
   tray_padding 5
 }
 
-# Set wallpaper
-exec --no-startup-id nitrogen --restore
-
 # Play/pause
 bindsym $mod+XF86Tools exec playerctl play-pause
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -272,9 +267,6 @@ exec --no-startup-id synclient HorizTwoFingerScroll=1 PalmDetect=1
 # Straight into compton mo'fucker
 exec --no-startup-id dbus-launch compton -b
 
-# Export dbus session for laptop lid scripts
-exec --no-startup-id ~/export_x_info
-
 # Wal shenanigans
 set_from_resource $fg i3wm.color7 #f0f0f0
 set_from_resource $bg i3wm.color2 #f0f0f0
@@ -302,3 +294,5 @@ workspace 10 output DP1 DP2 HDMI1
 
 set_from_resource $bg i3wm.color0 #000000
 set_from_resource $fg i3wm.color1 #FFFFFF
+
+exec --no-startup-id randrctl -d auto
