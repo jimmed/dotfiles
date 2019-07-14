@@ -8,9 +8,9 @@ function push-and-pr --description 'Pushes to origin on the current branch and r
     if [ $current_branch ]
         echo -s (set_color green) "Pushing to origin/$current_branch" (set_color normal)
         git push -u origin $current_branch
-        echo -s (set_color green) "Raising pull request on GitHub..." (set_color normal)
+        and echo -s (set_color green) "Raising pull request on GitHub..." (set_color normal)
         and pr $pr_title
-        echo -s (set_color green) "Done!" (set_color normal)
+        and echo -s (set_color green) "Done!" (set_color normal)
     else
         echo -s (set_color red) "Not in a git repository" (set_color normal)
     end

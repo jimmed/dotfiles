@@ -9,10 +9,7 @@ for_window [class="^.*"] border pixel 0
 gaps inner 15
 gaps outer 0
 
-# DPI settings
-exec xrandr --output eDP1 --dpi 120
-exec xrandr --output DP1-1 --dpi 96
-exec xrandr --output DP1-2 --dpi 96
+exec --no-startup-id randrctl -d auto
 
 # Windows key!
 set $mod Mod4
@@ -168,16 +165,17 @@ mode "$mode_system" {
         bindsym Escape mode "default"
 }
 bindsym $mod+Escape mode "$mode_system"
+bindsym XF86Sleep exec --no-startup-id /home/.jim/.config/i3/i3exit lock
 
 
 ## ThinkPad specific
 # Volume Keys
 set $cmd_set_vol    exec "/home/jim/.config/i3/i3volume"
-set $cmd_vol_down   exec "pactl set-sink-volume 0 -10%"
-set $cmd_vol_up     exec "pactl set-sink-volume 0 +10%"
-set $cmd_vol_down_small   exec "pactl set-sink-volume 0 -1%"
-set $cmd_vol_up_small     exec "pactl set-sink-volume 0 +1%"
-set $cmd_vol_mute   exec "amixer set Master toggle && amixer set Headphone unmute && amixer set Speaker unmute"
+set $cmd_vol_down   exec "amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 ty3status"
+set $cmd_vol_up     exec "amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 ty3status"
+set $cmd_vol_down_small   exec "amixer -q -D pulse sset Master 1%- && pkill -RTMIN+1 ty3status"
+set $cmd_vol_up_small     exec "amixer -q -D pulse sset Master 1%+ && pkill -RTMIN+1 ty3status"
+set $cmd_vol_mute   exec "amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 ty3status"
 set $cmd_mic_mute   exec "amixer set Capture toggle"
 bindsym XF86AudioMute $cmd_vol_mute
 bindsym $mod+F1 $cmd_vol_mute
@@ -238,9 +236,11 @@ bar {
 bindsym $mod+XF86Tools exec playerctl play-pause
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym $mod+F9 exec playerctl play-pause
+bindsym XF86AudioPrev exec playerctl previous
 bindsym $mod+XF86Search exec playerctl previous
 bindsym XF86Search exec playerctl previous
 bindsym $mod+F10 exec playerctl previous
+bindsym XF86AudioNext exec playerctl next
 bindsym $mod+XF86LaunchA exec playerctl next
 bindsym XF86LaunchA exec playerctl next
 bindsym $mod+F11 exec playerctl next
@@ -286,13 +286,12 @@ workspace 3 output eDP1
 workspace 5 output eDP1
 workspace 7 output eDP1
 workspace 9 output eDP1
-workspace 2 output DP1 DP2 HDMI1
-workspace 4 output DP1 DP2 HDMI1
-workspace 6 output DP1 DP2 HDMI1
-workspace 8 output DP1 DP2 HDMI1
-workspace 10 output DP1 DP2 HDMI1
+workspace 2 output DP1 DP2 HDMI1 DP1-1 DP1-2
+workspace 4 output DP1 DP2 HDMI1 DP1-1 DP1-2
+workspace 6 output DP1 DP2 HDMI1 DP1-1 DP1-2
+workspace 8 output DP1 DP2 HDMI1 DP1-1 DP1-2
+workspace 10 output DP1 DP2 HDMI1 DP1-1 DP1-2
 
 set_from_resource $bg i3wm.color0 #000000
 set_from_resource $fg i3wm.color1 #FFFFFF
 
-exec --no-startup-id randrctl -d auto
