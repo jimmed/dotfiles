@@ -4,6 +4,7 @@ set -x GOPATH /usr/lib/local/golang/
 set -x EDITOR vim
 set -x PATH (yarn global bin) $PATH
 set -x PATH $HOME/.local/bin $PATH
+set -x PATH $HOME/.deno/bin $PATH
 set -x default_user jim
 
 cat ~/.cache/wal/sequences
